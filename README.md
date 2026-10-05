@@ -49,16 +49,19 @@ app.netlify.com/drop.
 ## Editing content
 
 - Card text (about, skills, project summaries): the `.slot` blocks in `index.html`.
-- Project details, the plain view and profile data: `PROFILE` and `PROJECTS` near the top of the first script.
-- Contact links: the `<footer id="foot">` list. The plain view copies them from there.
+- Project details, the 2D version and profile data: `PROFILE` and `PROJECTS` near the top of the first script.
+- Contact links: the `<footer id="foot">` list. The 2D version copies them from there.
 - Adding a section: add another `.slot` block. The helix spacing, navigation dots and HUD adjust
   automatically; increase `#scroller` height if sections feel rushed.
 
 ## Features
 
+- Top navbar (about, skills, projects, contact, résumé) that highlights the current section; collapses to a menu on phones
+- 3D / 2D switch in the navbar. The 2D version is a normal scrolling page with an animated 2D helix,
+  project cards and expandable details. It remembers each visitor's choice, opens with `?view=2d`,
+  and is used automatically when 3D is unavailable or too slow to load
 - Boot sequence, glitch titles and a HUD that decodes the name as you fly
-- Navigation dots on the right edge; deep links such as `/#loop` open a project directly
-- Plain view (top-left) with all content as a normal page; used automatically when 3D is unavailable
+- Navigation dots on the right edge; deep links such as `/#loop` or `/#contact` jump straight there
 - Optional synth sound (off by default)
 - Respects "reduce motion" settings
 - Try the Konami code: ↑ ↑ ↓ ↓ ← → ← → B A

@@ -28,7 +28,7 @@
   "jobTitle": "Full-Stack Developer",
   "description": "Third-year Mechanical Engineering student at IIT Kharagpur building full-stack web apps with AI.",
   "affiliation": { "@type": "CollegeOrUniversity", "name": "Indian Institute of Technology Kharagpur" },
-  "sameAs": ["https://github.com/shikhar746"],
+  "sameAs": ["https://github.com/shikhar746", "https://www.linkedin.com/in/shikhar-srivastava-ba86a2322/"],
   "knowsAbout": ["JavaScript", "TypeScript", "C++", "React", "Next.js", "Node.js", "PostgreSQL", "AI", "Competitive Programming"]
 }
 </script>
@@ -46,6 +46,7 @@
     --muted: #9a8fc0;
     --display: "Chakra Petch", "Trebuchet MS", sans-serif;
     --mono: "Share Tech Mono", ui-monospace, "Courier New", monospace;
+    --navh: 54px;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--mono); }
@@ -66,7 +67,7 @@
   #links circle.on { opacity: 1; }
 
   #hero { position: fixed; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center;
-    justify-content: flex-start; padding-top: 10vh; text-align: center; pointer-events: none;
+    justify-content: flex-start; padding-top: calc(var(--navh) + 8vh); text-align: center; pointer-events: none;
     transition: opacity .5s, transform .5s; }
   #hero.off { opacity: 0; transform: translateY(-20px); }
   #hero h1 { font-family: var(--display); font-weight: 700; font-size: clamp(2.8rem, 10vw, 7rem); line-height: .95;
@@ -77,7 +78,7 @@
   #hero .role { color: var(--cyan); text-shadow: 0 0 8px rgba(0,240,255,.5); font-size: 1.05rem; }
   #hero .role + p { margin-top: .6rem; }
   #hero p { background: rgba(7,2,15,.6); padding: .2rem .6rem; }
-  html.still #menu, html.still #hud, html.still #seqnav, html.still #hero .role + p { display: none; }
+  html.still #topnav, html.still #hud, html.still #seqnav, html.still #hero .role + p { display: none; }
   #hero p b { color: var(--yellow); font-weight: 400; animation: blink 1.1s infinite steps(1); }
   @keyframes blink { 50% { opacity: 0; } }
   @keyframes glitch {
@@ -87,18 +88,35 @@
     97% { transform: translate(-2px, 0) skewX(-4deg); }
   }
 
-  #hud { position: fixed; z-index: 6; top: calc(14px + env(safe-area-inset-top, 0px)); right: 16px;
-    font-size: .8rem; color: var(--cyan); text-shadow: 0 0 8px var(--cyan); pointer-events: none; text-align: right; line-height: 1.45; }
-  #hud-sec { color: var(--yellow); text-shadow: 0 0 8px rgba(252,238,10,.6); }
-  #hud-dec { color: var(--magenta); text-shadow: 0 0 8px var(--magenta); }
+  #hud { position: fixed; z-index: 6; top: calc(var(--navh) + env(safe-area-inset-top, 0px) + 12px); right: 16px;
+    font-size: .8rem; color: var(--magenta); text-shadow: 0 0 8px var(--magenta); pointer-events: none; text-align: right; }
 
-  /* top-left menu */
-  #menu { position: fixed; z-index: 9; top: calc(10px + env(safe-area-inset-top, 0px)); left: 10px; display: flex; gap: .25rem; font-size: .8rem; }
-  #menu a, #menu button { font: inherit; color: var(--yellow); background: rgba(7,2,15,.6); border: 0; padding: .25rem .45rem;
-    cursor: pointer; text-decoration: none; text-shadow: 0 0 8px rgba(252,238,10,.5); }
-  #menu button[aria-pressed="true"] { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
-  #menu a:hover, #menu button:hover { text-decoration: underline; }
-  #menu a:focus-visible, #menu button:focus-visible { outline: 1px solid var(--yellow); outline-offset: 1px; }
+  /* top navbar */
+  #topnav { position: fixed; z-index: 20; top: 0; left: 0; right: 0; height: calc(var(--navh) + env(safe-area-inset-top, 0px));
+    padding: env(safe-area-inset-top, 0px) 16px 0; display: flex; align-items: center; gap: 1rem;
+    background: rgba(7,2,15,.86); border-bottom: 1px solid rgba(0,240,255,.22); }
+  #topnav .brand { display: flex; align-items: center; gap: .55rem; color: var(--text); text-decoration: none; white-space: nowrap;
+    font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: .02em; }
+  #topnav .brand b { color: var(--magenta); text-shadow: 0 0 8px var(--magenta); }
+  #topnav .brand:focus-visible { outline: 1px solid var(--yellow); outline-offset: 3px; }
+  .nav-links { display: flex; align-items: center; gap: .2rem; margin-left: auto; }
+  .nav-links a { position: relative; color: var(--muted); text-decoration: none; font-size: .9rem; padding: .4rem .7rem; }
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--text); outline: none; }
+  .nav-links a:focus-visible { box-shadow: inset 0 0 0 1px var(--yellow); }
+  .nav-links a.active { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+  .nav-links a.active::after { content: ""; position: absolute; left: .7rem; right: .7rem; bottom: .15rem; height: 1px;
+    background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+  .nav-links .nav-cv { color: var(--yellow); text-shadow: 0 0 8px rgba(252,238,10,.4); }
+  .nav-tools { display: flex; align-items: center; gap: .5rem; }
+  .view-toggle { display: flex; border: 1px solid var(--magenta); box-shadow: 0 0 10px rgba(255,43,214,.25); }
+  .view-toggle button { font: inherit; font-size: .8rem; padding: .3rem .65rem; background: none; color: var(--muted); border: 0; cursor: pointer; }
+  .view-toggle button[aria-pressed="true"] { background: var(--magenta); color: var(--bg); }
+  .view-toggle button:disabled { opacity: .35; cursor: not-allowed; }
+  #snd-btn, #nav-burger { font: inherit; font-size: .8rem; background: none; border: 1px solid rgba(0,240,255,.4); color: var(--cyan);
+    padding: .3rem .55rem; cursor: pointer; }
+  #snd-btn[aria-pressed="true"] { background: rgba(0,240,255,.15); }
+  #nav-burger { display: none; font-size: 1rem; line-height: 1; padding: .3rem .6rem; }
+  .view-toggle button:focus-visible, #snd-btn:focus-visible, #nav-burger:focus-visible { outline: 1px solid var(--yellow); outline-offset: 2px; }
 
   /* boot sequence */
   #boot { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; justify-content: center;
@@ -117,41 +135,77 @@
     text-shadow: 0 0 8px rgba(252,238,10,.6); opacity: 0; transition: opacity .3s; pointer-events: none; }
   #toast.on { opacity: 1; }
 
-  /* plain view: the same content as a normal readable page */
-  #plain { display: none; max-width: 54rem; margin: 0 auto; padding: 5rem 16px 4rem; }
-  html.plain #plain { display: block; }
-  html.plain #menu { position: absolute; }
-  html.plain #gl, html.plain #links, html.plain .fx, html.plain .slot, html.plain #hud, html.plain #seqnav,
-  html.plain #hero, html.plain #foot, html.plain #scroller, html.plain #bar { display: none !important; }
-  #plain header h1 { font-family: var(--display); font-weight: 700; font-size: clamp(2.4rem, 9vw, 4.4rem); line-height: .95; margin: 0;
-    text-shadow: 3px 0 var(--magenta), -3px 0 var(--cyan); }
-  #plain .p-role { color: var(--cyan); text-shadow: 0 0 8px rgba(0,240,255,.5); margin: .8rem 0 0; }
-  #plain section { margin-top: 3.2rem; }
-  #plain h2 { font-size: .85rem; font-weight: 400; color: var(--cyan); text-shadow: 0 0 8px var(--cyan); letter-spacing: .06em;
-    margin: 0 0 1rem; padding-bottom: .45rem; border-bottom: 1px solid rgba(0,240,255,.3); }
-  #plain p { color: var(--muted); line-height: 1.65; margin: 0; }
-  #plain .p-lead { color: var(--text); }
-  #plain .edu { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-  #plain .edu b { font-weight: 400; color: var(--text); }
-  #plain article { --c: var(--cyan); border-left: 2px solid var(--c); padding-left: 1.2rem; margin-top: 2.4rem; }
-  #plain article.m { --c: var(--magenta); }
-  #plain article.y { --c: var(--yellow); }
-  #plain h3 { font-family: var(--display); font-weight: 700; font-size: 1.9rem; margin: 0; }
-  #plain h4 { font-size: .8rem; font-weight: 400; color: var(--c); text-shadow: 0 0 8px var(--c); margin: 1.2rem 0 .5rem; }
-  #plain .file-shot { margin: 1rem 0 0; }
-  #plain ul.p-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
-  #plain ul.p-list li { padding-left: 1.1rem; position: relative; line-height: 1.5; color: var(--muted); }
-  #plain ul.p-list li::before { content: "▸"; position: absolute; left: 0; color: var(--c); }
-  #plain .p-skills { display: grid; gap: .7rem; --c: var(--cyan); }
-  #plain .p-skills > div { display: grid; grid-template-columns: 6rem 1fr; gap: .5rem; align-items: baseline; }
-  #plain .p-skills > div > span { color: var(--muted); font-size: .8rem; }
-  #plain .p-skills .chips { margin: 0; }
-  #plain .p-contact { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
-  #plain .p-contact li { display: flex; gap: 1rem; }
-  #plain .p-contact span { color: var(--muted); width: 5rem; flex: none; }
-  #plain a { color: var(--cyan); }
-  #plain .file-btns a { color: var(--bg); }
-  #plain .file-btns a.ghost { color: var(--c); }
+  /* ---------- 2D version: the same content as a designed, scrollable page ---------- */
+  #v2d { display: none; position: relative; }
+  html.v2d #v2d { display: block; }
+  html.v2d { scroll-behavior: smooth; }
+  html.v2d #gl, html.v2d #links, html.v2d .slot, html.v2d #hud, html.v2d #seqnav,
+  html.v2d #hero, html.v2d #foot, html.v2d #scroller, html.v2d #bar { display: none !important; }
+  #v2d section { max-width: 68rem; margin: 0 auto; padding: 5.5rem 16px 1rem; scroll-margin-top: var(--navh); }
+  #v2d .d-hero { position: relative; max-width: none; min-height: 100vh; min-height: 100svh; display: flex; align-items: center;
+    padding: calc(var(--navh) + 2rem) 16px 22vh; overflow: hidden; }
+  #helix2d { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .d-hero-in { position: relative; width: 100%; max-width: 68rem; margin: 0 auto; }
+  .d-kicker { margin: 0 0 .9rem; color: var(--magenta); text-shadow: 0 0 8px var(--magenta); font-size: .9rem; }
+  .d-hero h1 { font-family: var(--display); font-weight: 700; font-size: clamp(2.8rem, 11vw, 7.5rem); line-height: .92; margin: 0;
+    letter-spacing: .02em; text-shadow: 3px 0 var(--magenta), -3px 0 var(--cyan), 0 0 24px rgba(255,43,214,.45);
+    animation: glitch 4s infinite steps(1); }
+  .d-role { margin: 1.1rem 0 0; color: var(--cyan); text-shadow: 0 0 8px rgba(0,240,255,.5); font-size: 1.05rem; }
+  .d-intro { margin: 1rem 0 0; max-width: 36rem; color: var(--muted); line-height: 1.65; }
+  .d-hero .file-btns { --c: var(--cyan); margin-top: 1.6rem; }
+  .d-hint { position: absolute; left: 50%; bottom: 18px; translate: -50% 0; color: var(--muted); font-size: .8rem; white-space: nowrap; }
+  .d-hint b { color: var(--yellow); font-weight: 400; animation: blink 1.1s infinite steps(1); }
+  .d-h2 { display: flex; align-items: center; gap: 1rem; margin: 0 0 1.6rem; font-family: var(--display); font-weight: 700;
+    font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1; }
+  .d-h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--cyan), transparent); }
+  .d-panel { --c: var(--cyan); background: var(--c); padding: 1.5px;
+    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px)); }
+  .d-panel.m { --c: var(--magenta); }
+  .d-panel.y { --c: var(--yellow); }
+  .d-panel.v { --c: #9d4dff; }
+  .d-panel > .in { height: 100%; padding: 1.4rem 1.5rem 1.5rem; background: linear-gradient(160deg, #150826 0%, var(--panel) 70%);
+    clip-path: polygon(0 0, calc(100% - 17px) 0, 100% 17px, 100% 100%, 17px 100%, 0 calc(100% - 17px)); }
+  .d-about { display: grid; grid-template-columns: 1.7fr 1fr; gap: 1.2rem; }
+  .d-about p { margin: 0; color: var(--text); line-height: 1.7; }
+  .d-about .edu { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid rgba(0,240,255,.2); color: var(--muted); line-height: 1.6; }
+  .d-about .edu b { display: block; color: var(--text); font-weight: 400; }
+  .d-stats { display: grid; gap: 1.2rem; }
+  .d-stat b { display: block; font-family: var(--display); font-size: 2.3rem; line-height: 1; color: var(--c); text-shadow: 0 0 14px var(--c); }
+  .d-stat span { display: block; margin-top: .35rem; color: var(--muted); font-size: .85rem; }
+  .d-skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1rem; }
+  .d-skills h3, .d-proj h4 { margin: 0 0 .8rem; font-size: .85rem; font-weight: 400; color: var(--c); text-shadow: 0 0 8px var(--c); }
+  .d-skills .chips { margin: 0; }
+  .d-projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); gap: 1.4rem; align-items: start; }
+  .d-proj .file-shot { margin: -1.4rem -1.5rem 1.2rem; aspect-ratio: 16 / 10; border: 0; border-bottom: 1px solid var(--c); box-shadow: none; }
+  .d-proj .file-shot.term { aspect-ratio: 16 / 10; }
+  .d-proj .file-shot pre { font-size: .7rem; padding: 1rem; overflow: hidden; }
+  .d-proj .num { font-size: .8rem; color: var(--c); text-shadow: 0 0 8px var(--c); }
+  .d-proj h3 { margin: .3rem 0 .3rem; font-family: var(--display); font-weight: 700; font-size: 1.75rem; line-height: 1.05; }
+  .d-proj .tl { margin: 0; color: var(--muted); line-height: 1.5; }
+  .d-proj .file-btns { margin: 1.1rem 0 0; }
+  .d-proj details { margin-top: 1.1rem; padding-top: .8rem; border-top: 1px solid rgba(255,255,255,.12); }
+  .d-proj summary { cursor: pointer; list-style: none; color: var(--yellow); font-size: .9rem; text-shadow: 0 0 8px rgba(252,238,10,.4); }
+  .d-proj summary::-webkit-details-marker { display: none; }
+  .d-proj summary::after { content: " +"; }
+  .d-proj details[open] summary::after { content: " \2212"; }
+  .d-proj summary:focus-visible { outline: 1px solid var(--yellow); outline-offset: 3px; }
+  .d-proj h4 { margin: 1.1rem 0 .5rem; }
+  .d-proj .ov { margin: 0; color: var(--text); line-height: 1.6; }
+  .d-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+  .d-list li { position: relative; padding-left: 1.1rem; color: var(--muted); line-height: 1.5; }
+  .d-list li::before { content: "▸"; position: absolute; left: 0; color: var(--c); }
+  .d-contact { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: center; }
+  .d-contact h3 { margin: 0 0 .6rem; font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 6vw, 3rem); line-height: 1;
+    text-shadow: 2px 0 var(--magenta), -2px 0 var(--cyan); }
+  .d-contact p { margin: 0; color: var(--muted); line-height: 1.6; }
+  .d-contact ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+  .d-contact li { display: flex; gap: 1rem; align-items: baseline; }
+  .d-contact li span { flex: none; width: 5rem; color: var(--muted); }
+  .d-contact a { color: var(--cyan); text-decoration: none; text-shadow: 0 0 8px rgba(0,240,255,.5); word-break: break-all; }
+  .d-contact a:hover, .d-contact a:focus-visible { color: var(--yellow); text-decoration: underline; outline: none; }
+  .d-foot { padding: 4rem 16px 2.5rem; text-align: center; color: #6f6498; font-size: .8rem; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
 
   .slot { position: fixed; z-index: 4; top: 50%; translate: 0 -50%; width: min(25rem, 86vw); pointer-events: none; }
   .slot.left { left: 5vw; }
@@ -278,7 +332,7 @@
   .file-shot.term { aspect-ratio: auto; }
   .stack .chips { margin: 0; }
 
-  #bar { position: fixed; left: 0; top: 0; height: 3px; width: 0; z-index: 7; background: linear-gradient(90deg, var(--cyan), var(--magenta)); box-shadow: 0 0 10px var(--magenta); }
+  #bar { position: fixed; left: 0; top: calc(var(--navh) + env(safe-area-inset-top, 0px) - 1px); height: 2px; width: 0; z-index: 7; background: linear-gradient(90deg, var(--cyan), var(--magenta)); box-shadow: 0 0 10px var(--magenta); }
 
   @media (max-width: 700px) {
     .slot { top: auto; bottom: calc(5vh + env(safe-area-inset-bottom, 0px)); translate: 0 0; left: 4vw !important; right: 4vw !important; width: auto; }
@@ -289,10 +343,15 @@
     .links { margin-top: .7rem; }
     .pairs li { font-size: .85rem; }
     #seqnav { top: 30%; right: 4px; }
-    #menu { flex-direction: column; align-items: flex-start; gap: .1rem; }
-    #hero { padding-top: 17vh; }
-    #plain .p-skills > div { grid-template-columns: 1fr; gap: .3rem; }
-    #plain { padding-top: 7.5rem; }
+    #hero { padding-top: calc(var(--navh) + 10vh); }
+    #v2d section { padding-top: 4rem; }
+    .d-about, .d-contact { grid-template-columns: 1fr; }
+    .d-stats { grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+    .d-stat b { font-size: 1.6rem; }
+    .d-stat span { font-size: .75rem; }
+    .d-panel > .in { padding: 1.1rem 1.1rem 1.2rem; }
+    .d-proj .file-shot { margin: -1.1rem -1.1rem 1rem; }
+    .d-contact li span { width: 4.2rem; }
     .file-in { padding: 1.1rem 1.1rem 1.5rem; }
     .file-grid { grid-template-columns: 1fr; gap: 0; }
     .file-shot pre { font-size: .78rem; padding: .9rem; }
@@ -310,10 +369,26 @@
     .card { transition: opacity .2s; }
     .file-box { animation: none; }
     #boot pre .cur { animation: none; }
+    .d-hero h1 { animation: none; }
+    html.v2d { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+  @media (max-width: 760px) {
+    #nav-burger { display: block; }
+    .nav-tools { margin-left: auto; }
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch;
+      gap: 0; margin: 0; padding: .4rem 0; background: var(--bg); border-bottom: 1px solid rgba(0,240,255,.25);
+      box-shadow: 0 16px 30px rgba(0,0,0,.6); }
+    #topnav.open .nav-links { display: flex; }
+    .nav-links a { padding: .85rem 16px; font-size: 1rem; }
+    .nav-links a.active::after { display: none; }
+  }
+  @media (max-width: 420px) {
+    #topnav .brand span { display: none; }
   }
 </style>
 <noscript><style>
-  #boot, #scroller, #hud, #menu, .fx { display: none !important; }
+  #boot, #scroller, #hud, #topnav, .fx { display: none !important; }
   #hero, .slot, #foot { position: static; translate: none; transform: none; opacity: 1; width: auto; margin: 2rem 16px; }
   .card { transform: none; opacity: 1; }
 </style></noscript>
@@ -324,12 +399,27 @@
 <canvas id="gl" aria-hidden="true"></canvas>
 <svg id="links" aria-hidden="true"></svg>
 <div class="fx"></div>
-<div id="hud" aria-hidden="true"><div id="hud-sec">intro</div><div id="hud-rung">rung 000 / 000</div><div id="hud-dec">decode: _</div></div>
-<div id="menu">
-  <a href="Shikhar_Srivastava_Resume.pdf" download>résumé ↓</a>
-  <button id="plain-btn" type="button" aria-pressed="false">plain view</button>
-  <button id="snd-btn" type="button" aria-pressed="false">sound: off</button>
-</div>
+<div id="hud" aria-hidden="true">decode: _</div>
+<header id="topnav">
+  <a class="brand" href="#" id="brand" aria-label="Shikhar Srivastava, back to top">
+    <img src="favicon.svg" alt="" width="24" height="24"><span>shikhar<b>//</b>srivastava</span>
+  </a>
+  <nav class="nav-links" id="nav-links" aria-label="Main">
+    <a href="#about" data-go="about">about</a>
+    <a href="#skills" data-go="skills">skills</a>
+    <a href="#projects" data-go="projects">projects</a>
+    <a href="#contact" data-go="contact">contact</a>
+    <a class="nav-cv" href="Shikhar_Srivastava_Resume.pdf" download>résumé ↓</a>
+  </nav>
+  <div class="nav-tools">
+    <div class="view-toggle" role="group" aria-label="Choose view">
+      <button type="button" id="v3d" aria-pressed="true">3D</button>
+      <button type="button" id="v2d-btn" aria-pressed="false">2D</button>
+    </div>
+    <button type="button" id="snd-btn" aria-pressed="false" aria-label="Sound" title="Sound">♪ off</button>
+    <button type="button" id="nav-burger" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">☰</button>
+  </div>
+</header>
 <div id="toast" role="status"></div>
 
 <div id="hero">
@@ -338,14 +428,12 @@
   <p>scroll down to read my genome<b>_</b></p>
 </div>
 
-<div class="slot left" data-k="0" data-label="about"><div class="card"><div class="in">
-  <div class="tag">seq.01 // about</div>
+<div class="slot left" data-k="0" data-label="about" data-nav="about"><div class="card"><div class="in">
   <h2>Mechanical engineer who ships software</h2>
   <p>Third-year Mechanical Engineering student at IIT Kharagpur (CGPA 8.28). I build full-stack web apps with AI inside them, and I practise competitive programming.</p>
 </div></div></div>
 
-<div class="slot right" data-k="1" data-label="skills"><div class="card m"><div class="in">
-  <div class="tag">seq.02 // base pairs</div>
+<div class="slot right" data-k="1" data-label="skills" data-nav="skills"><div class="card m"><div class="in">
   <h2>What I'm made of</h2>
   <ul class="pairs">
     <li><b>C++</b><i></i><b>competitive programming</b></li>
@@ -356,24 +444,24 @@
   </ul>
 </div></div></div>
 
-<div class="slot left" data-k="2" data-label="project: LOOP" data-project="loop"><div class="card y proj"><div class="in">
-  <div class="tag">seq.03 // project</div>
+<div class="slot left" data-k="2" data-label="project 01 · LOOP" data-nav="projects" data-project="loop"><div class="card y proj"><div class="in">
+  <div class="tag">project 01</div>
   <h2>LOOP</h2>
   <p>AI customer-feedback platform. Claude sorts tickets, reviews and surveys by sentiment and theme. It finds trend spikes and answers plain-English questions about the feedback.</p>
   <div class="chips"><span>Next.js</span><span>TypeScript</span><span>Claude API</span><span>pgvector</span><span>Prisma</span></div>
   <div class="links"><a href="https://loop-psi-drab.vercel.app/" target="_blank" rel="noopener">live ↗</a><a href="https://github.com/shikhar746/Loop" target="_blank" rel="noopener">code ↗</a><button type="button" data-open="loop">open file +</button></div>
 </div></div></div>
 
-<div class="slot right" data-k="3" data-label="project: Minnerva" data-project="minnerva"><div class="card proj"><div class="in">
-  <div class="tag">seq.04 // project</div>
+<div class="slot right" data-k="3" data-label="project 02 · Minnerva" data-nav="projects" data-project="minnerva"><div class="card proj"><div class="in">
+  <div class="tag">project 02</div>
   <h2>Minnerva</h2>
   <p>Learning management system for workshop cohorts. It has AI grading across 6 model providers with human review, forum moderation and generated certificates.</p>
   <div class="chips"><span>Next.js</span><span>React 19</span><span>Prisma</span><span>Redis</span><span>NextAuth</span></div>
   <div class="links"><a href="https://learning-management-system-kappa-one.vercel.app" target="_blank" rel="noopener">live ↗</a><a href="https://github.com/shikhar746/Learning-Management-System" target="_blank" rel="noopener">code ↗</a><button type="button" data-open="minnerva">open file +</button></div>
 </div></div></div>
 
-<div class="slot left" data-k="4" data-label="project: CloudStorage" data-project="cloudstorage"><div class="card m proj"><div class="in">
-  <div class="tag">seq.05 // project</div>
+<div class="slot left" data-k="4" data-label="project 03 · CloudStorage" data-nav="projects" data-project="cloudstorage"><div class="card m proj"><div class="in">
+  <div class="tag">project 03</div>
   <h2>CloudStorage</h2>
   <p>A cloud drive with nested folders, granular sharing, password-protected public links and trash recovery. Its upload pipeline keeps large files out of server memory.</p>
   <div class="chips"><span>React</span><span>Express</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span></div>
@@ -390,7 +478,7 @@
     <ul>
       <li><span>mail</span><a href="mailto:you@example.com">you@example.com</a></li>
       <li><span>github</span><a href="https://github.com/shikhar746" target="_blank" rel="noopener">github.com/shikhar746</a></li>
-      <li><span>linkedin</span><a href="https://linkedin.com/in/your-handle" target="_blank" rel="noopener">linkedin.com/in/your-handle</a></li>
+      <li><span>linkedin</span><a href="https://www.linkedin.com/in/shikhar-srivastava-ba86a2322/" target="_blank" rel="noopener">in/shikhar-srivastava</a></li>
       <li><span>résumé</span><a href="Shikhar_Srivastava_Resume.pdf" download>download PDF</a></li>
     </ul>
     <button id="top" type="button"><span>back to top</span></button>
@@ -421,17 +509,17 @@
   </div></div>
 </div>
 
-<main id="plain" aria-label="Portfolio, plain view"></main>
+<main id="v2d" aria-label="Portfolio, 2D version"></main>
 
 <div id="scroller"></div>
 
 <script>
-// ---------- content, overlays, plain view, boot screen, sound (no 3D needed) ----------
+// ---------- content, navbar, overlays, 2D version, boot screen, sound (no 3D needed) ----------
 var APP = (function () {
   'use strict';
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var still = /[?&]still\b/.test(location.search);   // ?still skips the boot screen (used to capture the preview image)
-  var state = { fileOpen: false, plain: false, no3d: false };
+  var state = { fileOpen: false, view2d: false, no3d: false };
   var NAME = 'SHIKHAR SRIVASTAVA';
 
   function $(id) { return document.getElementById(id); }
@@ -453,7 +541,7 @@ var APP = (function () {
   var ORDER = ['loop', 'minnerva', 'cloudstorage'];
   var PROJECTS = {
     loop: {
-      seq: 'seq.03', color: 'y', title: 'LOOP', tagline: 'AI customer-feedback intelligence',
+      num: '01', color: 'y', title: 'LOOP', tagline: 'AI customer-feedback intelligence',
       shot: 'assets/loop.webp',
       links: [['https://loop-psi-drab.vercel.app/', 'open live app ↗'], ['https://github.com/shikhar746/Loop', 'view source ↗']],
       overview: 'LOOP pulls in customer feedback from support tickets, app reviews, NPS surveys, sales notes and community threads. It classifies every item and spots rising themes. It also answers questions about the feedback, citing the customers who said it.',
@@ -479,7 +567,7 @@ var APP = (function () {
       ]
     },
     minnerva: {
-      seq: 'seq.04', color: '', title: 'MINNERVA', tagline: 'AI-assisted multi-tenant learning management system',
+      num: '02', color: '', title: 'MINNERVA', tagline: 'AI-assisted multi-tenant learning management system',
       shot: 'assets/minnerva.webp',
       links: [['https://learning-management-system-kappa-one.vercel.app', 'open live app ↗'], ['https://github.com/shikhar746/Learning-Management-System', 'view source ↗']],
       overview: 'Instructors create workshop cohorts, assign tasks, grade submissions with AI assistance and issue certificates. Students join with access codes, submit versioned work, take part in moderated forums and track their progress.',
@@ -506,7 +594,7 @@ var APP = (function () {
       ]
     },
     cloudstorage: {
-      seq: 'seq.05', color: 'm', title: 'CLOUDSTORAGE', tagline: 'Full-stack cloud drive with sharing and trash recovery',
+      num: '03', color: 'm', title: 'CLOUDSTORAGE', tagline: 'Full-stack cloud drive with sharing and trash recovery',
       term: '<span class="p">$</span> curl cloud-storage-api-hquw.onrender.com/api/health\n{\n' +
         '  <span class="k">"status"</span>: "ok",\n  <span class="k">"limits"</span>: {\n' +
         '    <span class="k">"maxFileSizeBytes"</span>: <span class="n">52428800</span>,\n' +
@@ -536,7 +624,7 @@ var APP = (function () {
     }
   };
 
-  // shared builders, used by both the overlay and the plain view
+  // shared builders, used by both the overlay and the 2D version
   function fillShot(box, d) {
     box.innerHTML = '';
     box.className = 'file-shot' + (d.shot ? '' : ' term');
@@ -607,17 +695,17 @@ var APP = (function () {
     setTimeout(closeBoot, 9000);   // never keep anyone stuck behind the intro
   }
   function bootDone(msg) { bootReady = true; if (msg) bootMsg = msg; finishBoot(); }
-  // watchdog: if the 3D library hangs on a slow network, show the plain view instead of a blank page
+  // watchdog: if the 3D library hangs on a slow network, show the 2D version instead of a blank page
   setTimeout(function () { if (!bootReady && !window.THREE) fallback('slow'); }, 6000);
 
   // ---------- project file overlay ----------
   var fileEl = $('file'), fileBox = $('file-box'), fileIn = fileEl.querySelector('.file-in'), lastFocus = null;
   function openFile(id) {
     var d = PROJECTS[id];
-    if (!d || state.plain) return;
+    if (!d || state.view2d) return;
     lastFocus = document.activeElement;
     fileBox.className = 'file-box' + (d.color ? ' ' + d.color : '');
-    $('file-tag').textContent = 'file // ' + d.seq + ' // decrypted';
+    $('file-tag').textContent = 'project ' + d.num + ' // file decrypted';
     $('file-tagline').textContent = d.tagline;
     fillShot($('file-shot'), d);
     fillBtns($('file-btns'), d.links);
@@ -655,82 +743,260 @@ var APP = (function () {
     }
   });
 
-  // ---------- plain view ----------
-  var plainEl = $('plain'), plainBtn = $('plain-btn'), plainBuilt = false;
-  function section(id, title) { var s = make('section'); s.id = id; s.appendChild(make('h2', title)); plainEl.appendChild(s); return s; }
-  function buildPlain() {
-    if (plainBuilt) return;
-    plainBuilt = true;
-    var head = make('header');
-    head.appendChild(make('h1', NAME));
-    head.appendChild(make('p', PROFILE.role, 'p-role'));
-    var hb = make('div', '', 'file-btns');
-    hb.style.setProperty('--c', 'var(--cyan)');
-    fillBtns(hb, [['Shikhar_Srivastava_Resume.pdf', 'download résumé'], ['https://github.com/shikhar746', 'github ↗'], ['#plain-contact', 'contact']]);
-    var hbl = hb.querySelectorAll('a');
-    hbl[0].setAttribute('download', ''); hbl[0].removeAttribute('target');
-    hbl[2].removeAttribute('target');
-    head.appendChild(hb);
-    plainEl.appendChild(head);
+  // ---------- the name, encoded as DNA (shared by the 3D helix and the 2D one) ----------
+  // each character is stored as 4 bases, 2 bits each: A=00 C=01 G=10 T=11
+  var MESSAGE = NAME + ' // ';
+  var BASES = 'ACGT', COMP = { A: 'T', C: 'G', G: 'C', T: 'A' };
+  var BASE_COLOR = { A: 0x00f0ff, T: 0xff2bd6, G: 0xfcee0a, C: 0x9d4dff };
+  function baseAt(i) {
+    var code = MESSAGE.charCodeAt(Math.floor(i / 4) % MESSAGE.length);
+    return BASES[(code >> (6 - 2 * (i % 4))) & 3];
+  }
+  var gold = false;
 
-    var about = section('plain-about', '// about');
-    about.appendChild(make('p', PROFILE.about, 'p-lead'));
-    var edu = make('div', '', 'edu');
-    edu.appendChild(make('b', PROFILE.edu[0])); edu.appendChild(make('span', PROFILE.edu[1])); edu.appendChild(make('span', PROFILE.edu[2]));
-    about.appendChild(edu);
+  // ---------- navbar ----------
+  var topnav = $('topnav'), burger = $('nav-burger'), navLinks = document.querySelectorAll('#nav-links [data-go]');
+  function setActive(key) {
+    Array.prototype.forEach.call(navLinks, function (a) {
+      var on = a.getAttribute('data-go') === key;
+      a.classList.toggle('active', on);
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  function closeMenu() { topnav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
+  burger.addEventListener('click', function () {
+    var open = !topnav.classList.contains('open');
+    topnav.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('click', function (e) { if (!topnav.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+  Array.prototype.forEach.call(navLinks, function (a) {
+    a.addEventListener('click', function (e) {
+      closeMenu();
+      if (state.view2d) return;              // 2D: a normal anchor jump to the section
+      e.preventDefault();
+      if (api.go3d) api.go3d(a.getAttribute('data-go'));
+    });
+  });
+  $('brand').addEventListener('click', function (e) {
+    e.preventDefault(); closeMenu();
+    if (state.view2d) window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    else if (api.go3d) api.go3d('top');
+  });
 
-    var skills = section('plain-skills', '// skills');
-    var sk = make('div', '', 'p-skills'); fillStack(sk, PROFILE.skills); skills.appendChild(sk);
+  // ---------- 2D version ----------
+  var v2dEl = $('v2d'), v3dBtn = $('v3d'), v2dBtn = $('v2d-btn'), built2d = false, helixKick = function () {};
+  function add(parent, tag, text, cls) { var n = make(tag, text, cls); parent.appendChild(n); return n; }
+  function panel(parent, color, cls) {
+    var p = add(parent, 'div', '', 'd-panel reveal' + (color ? ' ' + color : '') + (cls ? ' ' + cls : ''));
+    return add(p, 'div', '', 'in');
+  }
+  function section2d(id, title) {
+    var s = add(v2dEl, 'section'); s.id = id;
+    add(s, 'h2', title, 'd-h2 reveal');
+    return s;
+  }
+  function build2d() {
+    if (built2d) return;
+    built2d = true;
 
-    var work = section('plain-work', '// projects');
-    ORDER.forEach(function (id) {
-      var d = PROJECTS[id], art = make('article', '', d.color);
-      art.id = 'plain-' + id;
-      art.appendChild(make('h3', d.title));
-      art.appendChild(make('p', d.tagline));
-      var shot = make('div'); fillShot(shot, d); art.appendChild(shot);
-      var btns = make('div', '', 'file-btns'); fillBtns(btns, d.links); art.appendChild(btns);
-      art.appendChild(make('h4', '// overview')); art.appendChild(make('p', d.overview, 'p-lead'));
-      art.appendChild(make('h4', '// features')); var f = make('ul', '', 'p-list'); fillList(f, d.features); art.appendChild(f);
-      art.appendChild(make('h4', '// under the hood')); var h = make('ul', '', 'p-list'); fillList(h, d.hood); art.appendChild(h);
-      art.appendChild(make('h4', '// stack')); var st = make('div', '', 'stack'); fillStack(st, d.stack); art.appendChild(st);
-      work.appendChild(art);
+    // hero, with a flat helix that spells the name in the same base colours as the 3D one
+    var hero = add(v2dEl, 'section', '', 'd-hero'); hero.id = 'home';
+    var cv = add(hero, 'canvas'); cv.id = 'helix2d'; cv.setAttribute('aria-hidden', 'true');
+    var hi = add(hero, 'div', '', 'd-hero-in');
+    add(hi, 'p', 'hello, world. i am', 'd-kicker');
+    var h1 = add(hi, 'h1'); h1.innerHTML = 'SHIKHAR<br>SRIVASTAVA';
+    add(hi, 'p', PROFILE.role, 'd-role');
+    add(hi, 'p', PROFILE.about, 'd-intro');
+    var hb = add(hi, 'div', '', 'file-btns');
+    fillBtns(hb, [['Shikhar_Srivastava_Resume.pdf', 'download résumé'], ['https://github.com/shikhar746', 'github ↗'],
+      ['https://www.linkedin.com/in/shikhar-srivastava-ba86a2322/', 'linkedin ↗']]);
+    var cvLink = hb.querySelector('a'); cvLink.setAttribute('download', ''); cvLink.removeAttribute('target');
+    var hint = add(hero, 'div', 'scroll to explore', 'd-hint'); add(hint, 'b', '_');
+
+    // about
+    var about = section2d('about', 'about');
+    var ag = add(about, 'div', '', 'd-about');
+    var at = panel(ag, '');
+    add(at, 'p', PROFILE.about);
+    var edu = add(at, 'div', '', 'edu');
+    add(edu, 'b', PROFILE.edu[0]); add(edu, 'span', PROFILE.edu[1]);
+    var stats = add(ag, 'div', '', 'd-stats');
+    [['8.28', 'CGPA at IIT Kharagpur', 'm'], ['3rd', 'year, Mechanical Engineering', 'y'], ['3', 'full-stack AI projects built', 'v']].forEach(function (s) {
+      var st = panel(stats, s[2], 'd-stat');
+      add(st, 'b', s[0]); add(st, 'span', s[1]);
     });
 
-    var contact = section('plain-contact', '// contact');
-    contact.appendChild(make('p', 'Open to internships, projects and collaborations in full-stack and AI.', 'p-lead'));
-    var ul = make('ul', '', 'p-contact');
-    ul.style.marginTop = '1rem';
+    // skills
+    var skills = section2d('skills', 'skills');
+    var sg = add(skills, 'div', '', 'd-skills');
+    var colors = ['', 'm', 'y', 'v', ''];
+    PROFILE.skills.forEach(function (g, i) {
+      var p = panel(sg, colors[i % colors.length]);
+      add(p, 'h3', '// ' + g[0]);
+      var chips = add(p, 'div', '', 'chips');
+      g[1].forEach(function (t) { add(chips, 'span', t); });
+    });
+
+    // projects
+    var work = section2d('projects', 'projects');
+    var pg = add(work, 'div', '', 'd-projects');
+    ORDER.forEach(function (id) {
+      var d = PROJECTS[id];
+      var p = panel(pg, d.color, 'd-proj');
+      p.parentNode.id = 'p-' + id;
+      var shot = add(p, 'div'); fillShot(shot, d);
+      add(p, 'div', 'project ' + d.num, 'num');
+      add(p, 'h3', d.title);
+      add(p, 'p', d.tagline, 'tl');
+      var chips = add(p, 'div', '', 'chips');
+      d.stack.slice(0, 3).forEach(function (g) { chips.appendChild(make('span', g[1][0])); });
+      var btns = add(p, 'div', '', 'file-btns'); fillBtns(btns, d.links);
+      var det = add(p, 'details');
+      add(det, 'summary', 'details');
+      add(det, 'h4', '// overview'); add(det, 'p', d.overview, 'ov');
+      add(det, 'h4', '// features'); fillList(add(det, 'ul', '', 'd-list'), d.features);
+      add(det, 'h4', '// under the hood'); fillList(add(det, 'ul', '', 'd-list'), d.hood);
+      add(det, 'h4', '// stack'); fillStack(add(det, 'div', '', 'stack'), d.stack);
+    });
+
+    // contact (links are copied from the 3D footer, so they only need editing in one place)
+    var contact = section2d('contact', 'contact');
+    var cp = panel(contact, 'm');
+    var cg = add(cp, 'div', '', 'd-contact');
+    var cl = add(cg, 'div');
+    add(cl, 'h3', 'Signal me.');
+    add(cl, 'p', 'Open to internships, projects and collaborations in full-stack and AI. Send a message.');
+    var ul = add(cg, 'ul');
     Array.prototype.forEach.call(document.querySelectorAll('#foot ul li'), function (li) { ul.appendChild(li.cloneNode(true)); });
-    contact.appendChild(ul);
-    var copy = make('p', '© Shikhar Srivastava'); copy.style.marginTop = '3rem'; copy.style.fontSize = '.8rem';
-    plainEl.appendChild(copy);
+    add(v2dEl, 'footer', '© Shikhar Srivastava · built with three.js and canvas', 'd-foot');
+
+    // fade sections in as they scroll into view
+    var reveals = v2dEl.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || reduceMotion) {
+      Array.prototype.forEach.call(reveals, function (n) { n.classList.add('in'); });
+    } else {
+      var ro = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); ro.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      Array.prototype.forEach.call(reveals, function (n) { ro.observe(n); });
+    }
+    // highlight the navbar link for the section in the middle of the screen
+    if ('IntersectionObserver' in window) {
+      var so = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && state.view2d) setActive(en.target.id === 'home' ? null : en.target.id);
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      Array.prototype.forEach.call(v2dEl.querySelectorAll('section'), function (s) { so.observe(s); });
+    }
+    helixKick = startHelix2d(cv);
   }
-  function setPlain(on) {
-    if (state.no3d) on = true;
-    if (on) { closeFile(); buildPlain(); }
-    state.plain = on;
-    document.documentElement.classList.toggle('plain', on);
-    plainBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    plainBtn.textContent = on ? '3d view' : 'plain view';
-    window.scrollTo(0, 0);
-    var id = location.hash.slice(1), el = on && PROJECTS[id] && $('plain-' + id);
-    if (el) el.scrollIntoView();
+
+  // flat double helix on a 2D canvas: rotates in place, pauses when off screen
+  function startHelix2d(cv) {
+    var ctx = cv.getContext('2d');
+    if (!ctx) return function () {};
+    var CSS = { A: '#00f0ff', T: '#ff2bd6', G: '#fcee0a', C: '#9d4dff' };
+    var W = 0, H = 0, raf = 0, visible = true, t0 = performance.now();
+    function size() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function draw(time) {
+      var t = reduceMotion ? 0 : (time - t0) / 1000;
+      var narrow = W < 760, cy = H * (narrow ? 0.86 : 0.8), amp = Math.min(narrow ? 34 : 58, H * 0.08);
+      var step = narrow ? 14 : 18, k = narrow ? 0.05 : 0.04, n = Math.ceil(W / step) + 1;
+      ctx.clearRect(0, 0, W, H);
+      var pts = [];
+      for (var i = 0; i < n; i++) {
+        var x = i * step + step / 2, ph = x * k + t * 1.1, b = baseAt(i);
+        pts.push({ x: x, ya: cy + Math.sin(ph) * amp, yb: cy + Math.sin(ph + 2.6) * amp,
+          za: Math.cos(ph), zb: Math.cos(ph + 2.6), ca: gold ? '#ffc23a' : CSS[b], cb: gold ? '#ffc23a' : CSS[COMP[b]] });
+      }
+      // rungs: each half takes the colour of its base
+      ctx.lineWidth = 1.5;
+      pts.forEach(function (p) {
+        var my = (p.ya + p.yb) / 2;
+        ctx.globalAlpha = 0.45;
+        ctx.strokeStyle = p.ca; ctx.beginPath(); ctx.moveTo(p.x, p.ya); ctx.lineTo(p.x, my); ctx.stroke();
+        ctx.strokeStyle = p.cb; ctx.beginPath(); ctx.moveTo(p.x, my); ctx.lineTo(p.x, p.yb); ctx.stroke();
+      });
+      // backbones, brighter where the strand is nearer
+      [['ya', 'za', gold ? '#ffc23a' : '#00f0ff'], ['yb', 'zb', gold ? '#ffc23a' : '#ff2bd6']].forEach(function (s) {
+        ctx.strokeStyle = s[2]; ctx.lineWidth = 2.5;
+        for (var j = 1; j < pts.length; j++) {
+          ctx.globalAlpha = 0.25 + 0.5 * (pts[j][s[1]] + 1) / 2;
+          ctx.beginPath(); ctx.moveTo(pts[j - 1].x, pts[j - 1][s[0]]); ctx.lineTo(pts[j].x, pts[j][s[0]]); ctx.stroke();
+        }
+      });
+      // atoms: back ones first, front ones glowing on top
+      [false, true].forEach(function (front) {
+        pts.forEach(function (p) {
+          [['ya', 'za', 'ca'], ['yb', 'zb', 'cb']].forEach(function (s) {
+            var z = p[s[1]];
+            if ((z >= 0) !== front) return;
+            ctx.globalAlpha = 0.45 + 0.55 * (z + 1) / 2;
+            ctx.fillStyle = p[s[2]];
+            ctx.shadowColor = p[s[2]]; ctx.shadowBlur = front ? 12 : 0;
+            ctx.beginPath(); ctx.arc(p.x, p[s[0]], 2 + 2.6 * (z + 1) / 2, 0, Math.PI * 2); ctx.fill();
+          });
+        });
+      });
+      ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+    }
+    function frame(time) {
+      raf = 0;
+      if (!state.view2d || !visible || document.hidden) return;
+      draw(time);
+      if (!reduceMotion) raf = requestAnimationFrame(frame);
+    }
+    function kick() { if (!raf && state.view2d && visible) raf = requestAnimationFrame(frame); }
+    size();
+    window.addEventListener('resize', function () { size(); kick(); });
+    document.addEventListener('visibilitychange', kick);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; kick(); }).observe(cv);
+    }
+    return function () { size(); kick(); };
   }
-  plainBtn.addEventListener('click', function () { setPlain(!state.plain); });
+
+  function savePref(v) { try { localStorage.setItem('view', v); } catch (err) {} }
+  function setView(is2d, silent) {
+    if (state.no3d) is2d = true;
+    if (is2d) { closeFile(); build2d(); }
+    state.view2d = is2d;
+    document.documentElement.classList.toggle('v2d', is2d);
+    v3dBtn.setAttribute('aria-pressed', is2d ? 'false' : 'true');
+    v2dBtn.setAttribute('aria-pressed', is2d ? 'true' : 'false');
+    setActive(null);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (is2d) {
+      helixKick();
+      var id = location.hash.slice(1);
+      var el = PROJECTS[id] ? $('p-' + id) : (['about', 'skills', 'projects', 'contact'].indexOf(id) > -1 ? $(id) : null);
+      if (el) el.scrollIntoView({ behavior: 'instant' });
+    } else if (api.onView3d) api.onView3d();
+    if (!silent) savePref(is2d ? '2d' : '3d');
+  }
+  v3dBtn.addEventListener('click', function () { if (state.view2d) setView(false); });
+  v2dBtn.addEventListener('click', function () { if (!state.view2d) setView(true); });
   function fallback(why) {
     if (state.no3d) return;
     state.no3d = true;
-    plainBtn.hidden = true;
-    setPlain(true);
+    v3dBtn.disabled = true; v3dBtn.title = '3D is not available on this device';
+    setView(true, true);
     bootDone('<span class="warn">> ' + (why === 'slow' ? '3d is taking too long to load' : '3d unavailable on this device') +
-      ': opening plain view</span>');
+      ': opening 2D version</span>');
   }
   // the 3D library arrived after the watchdog gave up: offer the 3D view again
   function enable3d() {
     state.no3d = false;
-    plainBtn.hidden = false;
-    toast('// 3d view loaded: switch with "3d view" (top left)');
+    v3dBtn.disabled = false; v3dBtn.title = '';
+    toast('// 3D view loaded: switch with the 3D button in the navbar');
   }
 
   // ---------- sound (off by default): a low synth hum plus blips when things appear ----------
@@ -757,7 +1023,7 @@ var APP = (function () {
       master.gain.setTargetAtTime(on ? 0.05 : 0, actx.currentTime, on ? 0.4 : 0.15);
     }
     sndBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    sndBtn.textContent = 'sound: ' + (on ? 'on' : 'off');
+    sndBtn.textContent = '♪ ' + (on ? 'on' : 'off');
   }
   function blip(freq) {
     if (!soundOn || !actx) return;
@@ -785,18 +1051,30 @@ var APP = (function () {
     kpos = k === KONAMI[kpos] ? kpos + 1 : (k === KONAMI[0] ? 1 : 0);
     if (kpos === KONAMI.length) {
       kpos = 0;
-      var on = api.onKonami ? api.onKonami() : false;
-      toast(on ? '// genome unlocked: gold mode on' : '// gold mode off');
+      gold = !gold;
+      if (api.onKonami) api.onKonami(gold);
+      helixKick();
+      toast(gold ? '// genome unlocked: gold mode on' : '// gold mode off');
       blip(1320);
     }
   });
 
   var api = {
-    NAME: NAME, PROJECTS: PROJECTS, state: state, reduceMotion: reduceMotion,
-    scramble: scramble, blip: blip, openFile: openFile, closeFile: closeFile,
-    setPlain: setPlain, fallback: fallback, enable3d: enable3d, bootDone: bootDone,
-    onKonami: null   // set by the 3D scene
+    NAME: NAME, MESSAGE: MESSAGE, PROJECTS: PROJECTS, BASE_COLOR: BASE_COLOR, COMP: COMP, baseAt: baseAt,
+    state: state, reduceMotion: reduceMotion,
+    scramble: scramble, blip: blip, openFile: openFile, closeFile: closeFile, setActive: setActive,
+    setView: setView, fallback: fallback, enable3d: enable3d, bootDone: bootDone,
+    onKonami: null, go3d: null, onView3d: null   // set by the 3D scene
   };
+
+  // start in the 2D version when asked for (?view=2d) or when this visitor chose it last time
+  var pref = null;
+  try { pref = localStorage.getItem('view'); } catch (err) {}
+  var qv = (location.search.match(/[?&]view=(2d|3d)\b/) || [])[1];
+  if ((qv || pref) === '2d') {
+    setView(true, true);
+    boot.style.display = 'none'; bootClosed = true;
+  }
   return api;
 })();
 </script>
@@ -810,7 +1088,7 @@ var APP = (function () {
     catch (err) { return false; }
   }
   if (window.__threeFailed || !window.THREE || !webglOK()) { APP.fallback(); return; }
-  if (APP.state.no3d) APP.enable3d();   // loaded late, after the watchdog switched to the plain view
+  if (APP.state.no3d) APP.enable3d();   // loaded late, after the watchdog switched to the 2D version
 
   var BG = 0x07020f;
   var canvas = document.getElementById('gl');
@@ -852,14 +1130,8 @@ var APP = (function () {
   var TWIST = 0.55;      // angle turned per pair (about 11 pairs per full turn, like real DNA)
   var OFFSET = 2.6;      // strand B sits ~150 degrees from strand A (real DNA is not exactly opposite)
 
-  // the sequence is real data: each character of the message is stored as 4 bases, 2 bits each (A=00 C=01 G=10 T=11)
-  var MESSAGE = APP.NAME + ' // ';
-  var BASES = 'ACGT', COMP = { A: 'T', C: 'G', G: 'C', T: 'A' };
-  var BASE_COLOR = { A: 0x00f0ff, T: 0xff2bd6, G: 0xfcee0a, C: 0x9d4dff };
-  function baseAt(i) {
-    var code = MESSAGE.charCodeAt(Math.floor(i / 4) % MESSAGE.length);
-    return BASES[(code >> (6 - 2 * (i % 4))) & 3];
-  }
+  // the sequence is real data: the name encoded 2 bits per base (see APP.baseAt)
+  var MESSAGE = APP.MESSAGE, COMP = APP.COMP, BASE_COLOR = APP.BASE_COLOR, baseAt = APP.baseAt;
   function decodedUpTo(rung) {   // the characters fully read once the camera has passed `rung`
     var n = Math.floor((rung + 1) / 4), s = '';
     for (var k = Math.max(0, n - 18); k < n; k++) s += MESSAGE[k % MESSAGE.length];
@@ -982,21 +1254,21 @@ var APP = (function () {
     if (id) c.card.addEventListener('click', function (e) { if (c.on && !e.target.closest('a, button')) APP.openFile(id); });
   });
   var hero = document.getElementById('hero');
-  var hudSec = document.getElementById('hud-sec'), hudRung = document.getElementById('hud-rung'), hudDec = document.getElementById('hud-dec');
-  var lastRung = -1, lastNav = -1;
+  var hud = document.getElementById('hud');
+  var lastRung = -1;
 
   // ---------- scroll ----------
   // the last 1 screen of scrolling belongs to the footer; before that the DNA journey runs 0 -> 1
   var target = 0, current = 0, footTarget = 0, footCur = 0;
   var foot = document.getElementById('foot');
   var atBottom = false, arrivedAt = 0, accum = 0, rewinding = false, touchY = null;
-  function busy() { return APP.state.fileOpen || APP.state.plain; }
+  function busy() { return APP.state.fileOpen || APP.state.view2d; }
   function maxScroll() { return document.documentElement.scrollHeight - window.innerHeight; }
   function dnaSpan() { return Math.max(1, maxScroll() - window.innerHeight); }
   function clamp01(x) { return Math.min(1, Math.max(0, x)); }
 
   function readScroll() {
-    if (APP.state.plain) return;
+    if (APP.state.view2d) return;
     var vh = window.innerHeight, max = maxScroll(), span = dnaSpan();
     target = clamp01(window.scrollY / span);
     footTarget = clamp01((window.scrollY - span) / (vh * 0.8));
@@ -1057,22 +1329,24 @@ var APP = (function () {
   window.addEventListener('resize', resize);
 
   // ---------- sequence map: one dot per section, click to fly there ----------
-  var stops = [{ label: 'intro', y: function () { return 0; } }]
+  var stops = [{ label: 'intro', key: null, y: function () { return 0; } }]
     .concat(cards.map(function (c) {
-      return { label: c.slot.getAttribute('data-label'), y: function () { return c.centerP * dnaSpan(); } };
+      return { label: c.slot.getAttribute('data-label'), key: c.slot.getAttribute('data-nav'), y: function () { return c.centerP * dnaSpan(); } };
     }))
-    .concat([{ label: 'contact', y: function () { return maxScroll(); } }]);
-  var nav = document.getElementById('seqnav'), navIdx = 0;
+    .concat([{ label: 'contact', key: 'contact', y: function () { return maxScroll(); } }]);
+  function flyTo(i, instant) {
+    var to = stops[i].y();
+    if (instant) { window.scrollTo(0, to); readScroll(); current = target; footCur = footTarget; return; }
+    glide(to, Math.min(2200, 500 + Math.abs(to - window.scrollY) / window.innerHeight * 250));
+  }
+  var nav = document.getElementById('seqnav'), navIdx = -1;
   var navBtns = stops.map(function (s, i) {
     var b = document.createElement('button');
     b.type = 'button';
     b.setAttribute('aria-label', 'Go to ' + s.label);
     b.innerHTML = '<span class="dot"></span><span class="lbl"></span>';
-    b.querySelector('.lbl').textContent = ('0' + i).slice(-2) + ' // ' + s.label;
-    b.addEventListener('click', function () {
-      var to = s.y(), dist = Math.abs(to - window.scrollY) / window.innerHeight;
-      glide(to, Math.min(2200, 500 + dist * 250));
-    });
+    b.querySelector('.lbl').textContent = s.label;
+    b.addEventListener('click', function () { flyTo(i); });
     nav.appendChild(b);
     return b;
   });
@@ -1081,9 +1355,19 @@ var APP = (function () {
     var span = dnaSpan(), p = clamp01(window.scrollY / span), idx = 0, best = p;
     if (window.scrollY > span + window.innerHeight * 0.4) idx = stops.length - 1;
     else cards.forEach(function (c, k) { var d = Math.abs(p - c.centerP); if (d < best) { best = d; idx = k + 1; } });
+    if (idx === navIdx) return;
     navIdx = idx;
     navBtns.forEach(function (b, i) { b.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
+    APP.setActive(stops[idx].key);
   }
+  // navbar links: about / skills / projects (the first project) / contact, and the brand for the top
+  function stopFor(key) {
+    if (key === 'top') return 0;
+    for (var i = 0; i < stops.length; i++) if (stops[i].key === key) return i;
+    return -1;
+  }
+  APP.go3d = function (key, instant) { var i = stopFor(key); if (i > -1) flyTo(i, instant); };
+  APP.onView3d = function () { navIdx = -1; readScroll(); };
 
   // ---------- easter egg: konami code turns the whole genome gold ----------
   var GOLD = new THREE.Color(0xffc23a), saved = null;
@@ -1092,8 +1376,9 @@ var APP = (function () {
     Object.keys(rodMats).map(function (k) { return rodMats[k]; }),
     Object.keys(glowMats).map(function (k) { return glowMats[k]; }),
     glowPointMats);
-  APP.onKonami = function () {
-    if (!saved) {
+  APP.onKonami = function (on) {
+    if (on === !!saved) return on;
+    if (on) {
       saved = allMats.map(function (m) { return [m, m.color.getHex(), m.emissive ? m.emissive.getHex() : null, m.vertexColors]; });
       allMats.forEach(function (m) {
         m.color.copy(GOLD);
@@ -1126,12 +1411,11 @@ var APP = (function () {
   var clock = new THREE.Clock(), t = 0, booted = false;
   var v = new THREE.Vector3();
 
-  function pad(n) { return ('000' + n).slice(-3); }
 
   function loop() {
     requestAnimationFrame(loop);
     var dt = Math.min(clock.getDelta(), 0.1);
-    if (busy() && t > 0) return;   // scene is hidden behind the overlay or the plain view; keep the last frame
+    if (busy() && t > 0) return;   // scene is hidden behind the overlay or the 2D version; keep the last frame
     t += dt;
     if (canvas.clientWidth !== sizeW || canvas.clientHeight !== sizeH) resize();   // e.g. mobile URL bar showing/hiding
     current += (target - current) * (reduce ? 1 : 0.08);
@@ -1160,11 +1444,9 @@ var APP = (function () {
     hero.classList.toggle('off', target > 0.06);
 
     var rung = Math.round(camRung);
-    if (rung !== lastRung || navIdx !== lastNav) {
-      hudSec.textContent = stops[navIdx].label;
-      hudRung.textContent = 'rung ' + pad(rung) + ' / ' + pad(PAIRS);
-      hudDec.textContent = 'decode: ' + decodedUpTo(rung) + '_';
-      lastRung = rung; lastNav = navIdx;
+    if (rung !== lastRung) {
+      hud.textContent = 'decode: ' + decodedUpTo(rung) + '_';
+      lastRung = rung;
     }
 
     cards.forEach(function (c) {
@@ -1198,13 +1480,16 @@ var APP = (function () {
     });
   }
 
-  // deep link: index.html#loop flies to that project and opens its file
+  // deep links: index.html#loop flies to that project and opens its file; #about, #skills, #projects, #contact jump there
   var hashId = location.hash.slice(1);
-  if (APP.PROJECTS[hashId]) {
+  if (!APP.state.view2d && APP.PROJECTS[hashId]) {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     var hc = cards.filter(function (c) { return c.slot.getAttribute('data-project') === hashId; })[0];
     if (hc) { window.scrollTo(0, hc.centerP * dnaSpan()); readScroll(); current = target; }
     APP.openFile(hashId);
+  } else if (!APP.state.view2d && stopFor(hashId) > 0) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    APP.go3d(hashId, true);
   }
 
   loop();
