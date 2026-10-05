@@ -1,6 +1,10 @@
-import type { Profile, Project } from '../types';
+import type { CpStats, Profile, Project } from '../types';
+import cpStats from './cp-stats.json';
 
 export const NAME = 'SHIKHAR SRIVASTAVA';
+
+export const CP: CpStats = cpStats;
+export const CP_INTRO = 'I practise data structures and algorithms in C++: interview-style problems on LeetCode and rated contests on Codeforces.';
 
 export const PROFILE: Profile = {
   role: 'full-stack developer // AI // competitive programming',

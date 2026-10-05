@@ -1,9 +1,10 @@
 // 2D version: the same content as a designed, scrollable page (built on first use).
-import { ORDER, PROFILE, PROJECTS } from '../data/content';
+import { CP_INTRO, ORDER, PROFILE, PROJECTS } from '../data/content';
 import { $, add, make } from '../lib/dom';
 import { reduceMotion } from '../lib/env';
 import type { AppState } from '../types';
 import { fillBtns, fillList, fillShot, fillStack } from './builders';
+import { fillCodeforces, fillLeetcode, statsNote } from './cp';
 import { startHelix2d } from './helix2d';
 
 export interface View2d {
@@ -68,6 +69,14 @@ export function createView2d(state: AppState, setActive: (key: string | null) =>
       const chips = add(p, 'div', '', 'chips');
       g[1].forEach((t) => { add(chips, 'span', t); });
     });
+
+    // competitive programming
+    const cpSec = section2d('cp', 'cp & dsa');
+    add(cpSec, 'p', CP_INTRO, 'd-cp-intro reveal');
+    const cpGrid = add(cpSec, 'div', '', 'd-cp');
+    fillLeetcode(panel(cpGrid, 'y'));
+    fillCodeforces(panel(cpGrid, 'v'));
+    add(cpSec, 'div', statsNote(), 'cp-note reveal');
 
     // projects
     const work = section2d('projects', 'projects');

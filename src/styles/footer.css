@@ -11,7 +11,7 @@
 #foot p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 26rem; }
 #foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
 #foot li { display: flex; gap: 1rem; align-items: baseline; }
-#foot li span { color: var(--muted); width: 5rem; flex: none; }
+#foot li span { color: var(--muted); width: 6rem; flex: none; }
 #foot a { color: var(--cyan); text-decoration: none; text-shadow: 0 0 8px rgba(0,240,255,.5); word-break: break-all; }
 #foot a:hover, #foot a:focus-visible { color: var(--yellow); text-decoration: underline; outline: none; }
 #top { font: inherit; color: var(--text); cursor: pointer; border: 0; padding: 1.5px; background: var(--magenta);

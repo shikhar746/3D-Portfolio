@@ -7,6 +7,7 @@ import { reduceMotion } from './lib/env';
 import { scramble } from './lib/scramble';
 import type { App, AppState, SceneHooks } from './types';
 import { createBoot } from './ui/boot';
+import { fillCpCard } from './ui/cp';
 import { onKonami } from './ui/konami';
 import { createNavbar } from './ui/navbar';
 import { createOverlay } from './ui/overlay';
@@ -14,7 +15,7 @@ import { createSound, type Sound } from './ui/sound';
 import { createToast } from './ui/toast';
 import { createView2d } from './ui/view2d';
 
-const SECTIONS = ['about', 'skills', 'projects', 'contact'];
+const SECTIONS = ['about', 'skills', 'cp', 'projects', 'contact'];
 
 export function createApp(): App {
   const state: AppState = { fileOpen: false, view2d: false, no3d: false };
@@ -23,6 +24,7 @@ export function createApp(): App {
   const blip = (freq?: number): void => { if (sound) sound.blip(freq); };
   let gold = false;
 
+  fillCpCard();
   const boot = createBoot();
   const overlay = createOverlay(state, blip);
   const navbar = createNavbar(state, hooks);
@@ -46,7 +48,15 @@ export function createApp(): App {
       const id = location.hash.slice(1);
       const el = lookup(PROJECTS, id) ? document.getElementById('p-' + id)
         : (SECTIONS.indexOf(id) > -1 ? document.getElementById(id) : null);
-      if (el) el.scrollIntoView({ behavior: 'instant' });
+      if (el) {
+        const target = el;
+        target.scrollIntoView({ behavior: 'instant' });
+        // web fonts can still be swapping in and shift the layout; re-align once, unless the visitor already scrolled
+        const y = window.scrollY;
+        void document.fonts.ready.then(() => {
+          if (state.view2d && Math.abs(window.scrollY - y) < 2) target.scrollIntoView({ behavior: 'instant' });
+        });
+      }
     } else if (hooks.onView3d) hooks.onView3d();
     if (!silent) savePref(is2d ? '2d' : '3d');
   }

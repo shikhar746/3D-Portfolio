@@ -63,7 +63,7 @@ html.v2d #hero, html.v2d #foot, html.v2d #scroller, html.v2d #bar { display: non
 .d-contact p { margin: 0; color: var(--muted); line-height: 1.6; }
 .d-contact ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
 .d-contact li { display: flex; gap: 1rem; align-items: baseline; }
-.d-contact li span { flex: none; width: 5rem; color: var(--muted); }
+.d-contact li span { flex: none; width: 6rem; color: var(--muted); }
 .d-contact a { color: var(--cyan); text-decoration: none; text-shadow: 0 0 8px rgba(0,240,255,.5); word-break: break-all; }
 .d-contact a:hover, .d-contact a:focus-visible { color: var(--yellow); text-decoration: underline; outline: none; }
 .d-foot { padding: 4rem 16px 2.5rem; text-align: center; color: #6f6498; font-size: .8rem; }

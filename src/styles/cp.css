@@ -1,0 +1,34 @@
+/* Competitive programming stats (3D card and 2D section) */
+.cp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: 1rem; }
+.cp { min-width: 0; }
+.cp-name { display: inline-block; color: var(--c); text-decoration: none; font-size: .85rem; text-shadow: 0 0 8px var(--c); }
+.cp-name span { color: var(--muted); text-shadow: none; }
+.cp-name:hover, .cp-name:focus-visible { color: var(--yellow); text-decoration: underline; outline: none; }
+.cp-big { display: block; margin-top: .35rem; font-family: var(--display); font-weight: 700; font-size: 2.2rem; line-height: 1;
+  color: var(--text); text-shadow: 0 0 14px var(--c); }
+.cp-label { display: block; margin-top: .3rem; color: var(--muted); font-size: .8rem; }
+.cp-bar { display: flex; gap: 2px; height: 6px; margin-top: .75rem; }
+.cp-bar i { display: block; min-width: 2px; }
+.cp-bar .lc-e { background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+.cp-bar .lc-m { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
+.cp-bar .lc-h { background: var(--magenta); box-shadow: 0 0 6px var(--magenta); }
+.cp-legend { display: flex; flex-wrap: wrap; gap: .15rem .7rem; margin-top: .5rem; font-size: .75rem; color: var(--muted); }
+.cp-legend .lc-e { color: var(--cyan); }
+.cp-legend .lc-m { color: var(--yellow); }
+.cp-legend .lc-h { color: var(--magenta); }
+.cp-legend.cf { margin-top: .75rem; }
+.cp-note { margin-top: .9rem; color: #6f6498; font-size: .72rem; }
+
+.d-cp { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.d-cp .cp-big { font-size: 3.2rem; }
+.d-cp .cp-label { font-size: .9rem; }
+.d-cp .cp-bar { height: 8px; }
+.d-cp .cp-legend { font-size: .85rem; }
+.d-cp-intro { margin: 0 0 1.2rem; max-width: 44rem; color: var(--muted); line-height: 1.65; }
+
+@media (max-width: 700px) {
+  .card .cp-big { font-size: 1.7rem; }
+  .card .cp-grid { gap: .8rem; margin-top: .8rem; }
+  .card .cp-note { display: none; }
+  .d-cp { grid-template-columns: 1fr; }
+}

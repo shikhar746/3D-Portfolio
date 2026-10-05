@@ -25,6 +25,13 @@ npm run build
 
 Type-checks, then builds the static site into `dist/`. Preview the build with `npm run preview`.
 
+```bash
+npm run update-stats
+```
+
+Refreshes the LeetCode and Codeforces numbers in `src/data/cp-stats.json` from the public APIs. The
+deploy workflow also runs it before every build and redeploys weekly, so the live site stays current.
+
 ## Structure
 
 ```
@@ -37,6 +44,7 @@ src/
   app.ts              app shell: wires the UI modules, 3D/2D switch, fallback, easter egg
   types.ts            shared types (Project, Profile, App, ...)
   data/content.ts     all text: profile, skills, projects  <- edit content here
+  data/cp-stats.json  LeetCode / Codeforces stats (written by scripts/update-cp-stats.mjs)
   lib/                dom helpers, DNA encoding, scramble effect, environment flags
   ui/                 boot screen, navbar, project overlay, 2D version, 2D helix, sound, toast, konami
   scene/scene.ts      the three.js scene (its own chunk, loaded after the page is usable)
@@ -90,7 +98,8 @@ Alternatives: import the repo at vercel.com/new or netlify.com (both detect Vite
 
 ## Features
 
-- Top navbar (about, skills, projects, contact, résumé) that highlights the current section; collapses to a menu on phones
+- CP & DSA section with live-refreshed LeetCode and Codeforces stats
+- Top navbar (about, skills, cp & dsa, projects, contact, résumé) that highlights the current section; collapses to a menu on phones
 - 3D / 2D switch in the navbar. The 2D version remembers each visitor's choice, opens with `?view=2d`,
   and is used automatically when 3D is unavailable or too slow to load
 - Boot sequence, glitch titles and a HUD that decodes the name as you fly

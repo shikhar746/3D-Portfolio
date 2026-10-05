@@ -30,6 +30,13 @@ export interface Profile {
   skills: StackGroup[];
 }
 
+/** Competitive-programming profile stats (src/data/cp-stats.json, refreshed by `npm run update-stats`). */
+export interface CpStats {
+  updated: string;
+  leetcode: { handle: string; url: string; solved: number; easy: number; medium: number; hard: number };
+  codeforces: { handle: string; url: string; rating: number; maxRating: number; rank: string; maxRank: string; solved: number; contests: number };
+}
+
 export type Base = 'A' | 'C' | 'G' | 'T';
 
 export interface AppState {

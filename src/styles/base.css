@@ -13,7 +13,7 @@
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--mono); }
-#scroller { height: 850vh; }
+#scroller { height: 1000vh; }
 canvas#gl { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 
 .fx { position: fixed; inset: 0; pointer-events: none; z-index: 5;

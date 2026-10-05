@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '0 6 * * 1'   # Mondays 06:00 UTC: redeploy with fresh LeetCode / Codeforces stats
   workflow_dispatch:
 
 permissions:
@@ -24,6 +26,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Refresh CP stats (keeps the committed numbers if the APIs are unreachable)
+        run: npm run update-stats || echo "stats refresh failed; using committed numbers"
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -16,7 +16,7 @@
   .d-stat span { font-size: .75rem; }
   .d-panel > .in { padding: 1.1rem 1.1rem 1.2rem; }
   .d-proj .file-shot { margin: -1.1rem -1.1rem 1rem; }
-  .d-contact li span { width: 4.2rem; }
+  .d-contact li span { width: 5.4rem; }
   .file-in { padding: 1.1rem 1.1rem 1.5rem; }
   .file-grid { grid-template-columns: 1fr; gap: 0; }
   .file-shot pre { font-size: .78rem; padding: .9rem; }
@@ -24,7 +24,7 @@
   .foot-in { grid-template-columns: 1fr; gap: 1rem; padding-top: 1.2rem; }
   #foot h2 { font-size: 1.8rem; margin-bottom: 0; }
   #foot p { display: none; }
-  #foot li span { width: 4.2rem; }
+  #foot li span { width: 5.4rem; }
   #top { justify-self: stretch; }
   #top span { text-align: center; }
   .foot-hint { margin-top: 1rem; }
