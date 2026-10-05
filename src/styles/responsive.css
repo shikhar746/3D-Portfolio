@@ -1,0 +1,53 @@
+/* Breakpoints and reduced motion (kept last so they override) */
+@media (max-width: 700px) {
+  .slot { top: auto; bottom: calc(5vh + env(safe-area-inset-bottom, 0px)); translate: 0 0; left: 4vw !important; right: 4vw !important; width: auto; }
+  .card .in { padding: 1rem 1.1rem 1.2rem; }
+  .card h2 { font-size: 1.35rem; }
+  .card p { font-size: .92rem; }
+  .card .chips { display: none; }
+  .links { margin-top: .7rem; }
+  .pairs li { font-size: .85rem; }
+  #seqnav { top: 30%; right: 4px; }
+  #hero { padding-top: calc(var(--navh) + 10vh); }
+  #v2d section { padding-top: 4rem; }
+  .d-about, .d-contact { grid-template-columns: 1fr; }
+  .d-stats { grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+  .d-stat b { font-size: 1.6rem; }
+  .d-stat span { font-size: .75rem; }
+  .d-panel > .in { padding: 1.1rem 1.1rem 1.2rem; }
+  .d-proj .file-shot { margin: -1.1rem -1.1rem 1rem; }
+  .d-contact li span { width: 4.2rem; }
+  .file-in { padding: 1.1rem 1.1rem 1.5rem; }
+  .file-grid { grid-template-columns: 1fr; gap: 0; }
+  .file-shot pre { font-size: .78rem; padding: .9rem; }
+  .stack > div { grid-template-columns: 1fr; gap: .3rem; }
+  .foot-in { grid-template-columns: 1fr; gap: 1rem; padding-top: 1.2rem; }
+  #foot h2 { font-size: 1.8rem; margin-bottom: 0; }
+  #foot p { display: none; }
+  #foot li span { width: 4.2rem; }
+  #top { justify-self: stretch; }
+  #top span { text-align: center; }
+  .foot-hint { margin-top: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #hero h1 { animation: none; }
+  .card { transition: opacity .2s; }
+  .file-box { animation: none; }
+  #boot pre .cur { animation: none; }
+  .d-hero h1 { animation: none; }
+  html.v2d { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+@media (max-width: 760px) {
+  #nav-burger { display: block; }
+  .nav-tools { margin-left: auto; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch;
+    gap: 0; margin: 0; padding: .4rem 0; background: var(--bg); border-bottom: 1px solid rgba(0,240,255,.25);
+    box-shadow: 0 16px 30px rgba(0,0,0,.6); }
+  #topnav.open .nav-links { display: flex; }
+  .nav-links a { padding: .85rem 16px; font-size: 1rem; }
+  .nav-links a.active::after { display: none; }
+}
+@media (max-width: 420px) {
+  #topnav .brand span { display: none; }
+}

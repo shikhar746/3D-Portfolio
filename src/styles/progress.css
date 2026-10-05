@@ -1,0 +1,2 @@
+/* Scroll progress bar under the navbar */
+#bar { position: fixed; left: 0; top: calc(var(--navh) + env(safe-area-inset-top, 0px) - 1px); height: 2px; width: 0; z-index: 7; background: linear-gradient(90deg, var(--cyan), var(--magenta)); box-shadow: 0 0 10px var(--magenta); }

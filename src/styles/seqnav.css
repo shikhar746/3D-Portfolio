@@ -1,0 +1,16 @@
+/* sequence map (section dots) */
+#seqnav { position: fixed; z-index: 8; right: 12px; top: 50%; translate: 0 -50%; display: flex; flex-direction: column; gap: 4px; }
+#seqnav::before { content: ""; position: absolute; right: 13px; top: 11px; bottom: 11px; width: 1px;
+  background: linear-gradient(var(--cyan), var(--magenta)); opacity: .35; }
+#seqnav button { position: relative; width: 28px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; }
+#seqnav .dot { position: absolute; right: 9px; top: 7px; width: 9px; height: 9px; rotate: 45deg; background: var(--bg);
+  border: 1px solid var(--cyan); transition: background .25s, scale .25s, box-shadow .25s; }
+#seqnav .lbl { position: absolute; right: 32px; top: 50%; translate: 0 -50%; white-space: nowrap; font-size: .75rem;
+  color: var(--cyan); text-shadow: 0 0 8px var(--cyan); background: rgba(7,2,15,.85); padding: .15rem .45rem;
+  opacity: 0; transition: opacity .2s; pointer-events: none; }
+#seqnav button:hover .lbl, #seqnav button:focus-visible .lbl { opacity: 1; }
+#seqnav button:hover .dot { box-shadow: 0 0 8px var(--cyan); }
+#seqnav button:focus-visible { outline: none; }
+#seqnav button:focus-visible .dot { outline: 2px solid var(--yellow); outline-offset: 3px; }
+#seqnav button[aria-current="true"] .dot { background: var(--magenta); border-color: var(--magenta); scale: 1.35;
+  box-shadow: 0 0 10px var(--magenta); }

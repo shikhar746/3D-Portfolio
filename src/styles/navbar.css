@@ -1,0 +1,26 @@
+/* top navbar */
+#topnav { position: fixed; z-index: 20; top: 0; left: 0; right: 0; height: calc(var(--navh) + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) 16px 0; display: flex; align-items: center; gap: 1rem;
+  background: rgba(7,2,15,.86); border-bottom: 1px solid rgba(0,240,255,.22); }
+#topnav .brand { display: flex; align-items: center; gap: .55rem; color: var(--text); text-decoration: none; white-space: nowrap;
+  font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: .02em; }
+#topnav .brand b { color: var(--magenta); text-shadow: 0 0 8px var(--magenta); }
+#topnav .brand:focus-visible { outline: 1px solid var(--yellow); outline-offset: 3px; }
+.nav-links { display: flex; align-items: center; gap: .2rem; margin-left: auto; }
+.nav-links a { position: relative; color: var(--muted); text-decoration: none; font-size: .9rem; padding: .4rem .7rem; }
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--text); outline: none; }
+.nav-links a:focus-visible { box-shadow: inset 0 0 0 1px var(--yellow); }
+.nav-links a.active { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+.nav-links a.active::after { content: ""; position: absolute; left: .7rem; right: .7rem; bottom: .15rem; height: 1px;
+  background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+.nav-links .nav-cv { color: var(--yellow); text-shadow: 0 0 8px rgba(252,238,10,.4); }
+.nav-tools { display: flex; align-items: center; gap: .5rem; }
+.view-toggle { display: flex; border: 1px solid var(--magenta); box-shadow: 0 0 10px rgba(255,43,214,.25); }
+.view-toggle button { font: inherit; font-size: .8rem; padding: .3rem .65rem; background: none; color: var(--muted); border: 0; cursor: pointer; }
+.view-toggle button[aria-pressed="true"] { background: var(--magenta); color: var(--bg); }
+.view-toggle button:disabled { opacity: .35; cursor: not-allowed; }
+#snd-btn, #nav-burger { font: inherit; font-size: .8rem; background: none; border: 1px solid rgba(0,240,255,.4); color: var(--cyan);
+  padding: .3rem .55rem; cursor: pointer; }
+#snd-btn[aria-pressed="true"] { background: rgba(0,240,255,.15); }
+#nav-burger { display: none; font-size: 1rem; line-height: 1; padding: .3rem .6rem; }
+.view-toggle button:focus-visible, #snd-btn:focus-visible, #nav-burger:focus-visible { outline: 1px solid var(--yellow); outline-offset: 2px; }

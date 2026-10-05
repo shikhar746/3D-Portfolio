@@ -1,0 +1,29 @@
+/* 3D view: section cards that pop out of atoms */
+.slot { position: fixed; z-index: 4; top: 50%; translate: 0 -50%; width: min(25rem, 86vw); pointer-events: none; }
+.slot.left { left: 5vw; }
+.slot.right { right: 5vw; }
+.card { --c: var(--cyan);
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+  background: var(--c); padding: 1.5px;
+  transform: scale(.02); opacity: 0;
+  transition: transform .6s cubic-bezier(.2,.9,.2,1), opacity .25s; }
+.card.m { --c: var(--magenta); }
+.card.y { --c: var(--yellow); }
+.card.on { transform: scale(1); opacity: 1; }
+.card .in { background: linear-gradient(160deg, #150826 0%, var(--panel) 70%);
+  clip-path: polygon(0 0, calc(100% - 21px) 0, 100% 21px, 100% 100%, 21px 100%, 0 calc(100% - 21px));
+  padding: 1.4rem 1.5rem 1.6rem; }
+.card.on { pointer-events: auto; }
+.chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .85rem; }
+.chips span { font-size: .72rem; padding: .12rem .45rem; border: 1px solid var(--c); color: var(--c); }
+.links { display: flex; gap: 1.4rem; margin-top: .9rem; }
+.links a { color: var(--c); text-decoration: none; font-size: .9rem; text-shadow: 0 0 8px var(--c); }
+.links a:hover, .links a:focus-visible { color: var(--yellow); text-decoration: underline; outline: none; }
+.pairs { list-style: none; margin: .2rem 0 0; padding: 0; display: grid; gap: .45rem; }
+.pairs li { display: grid; grid-template-columns: 1fr 2.2rem 1fr; align-items: center; font-size: .9rem; }
+.pairs li b { font-weight: 400; color: var(--text); }
+.pairs li b:last-child { text-align: right; color: var(--muted); }
+.pairs li i { height: 2px; background: linear-gradient(90deg, var(--cyan), var(--magenta)); box-shadow: 0 0 6px var(--magenta); }
+.card .tag { font-size: .8rem; color: var(--c); margin-bottom: .6rem; text-shadow: 0 0 8px var(--c); }
+.card h2 { font-family: var(--display); font-weight: 700; font-size: 1.7rem; margin: 0 0 .6rem; line-height: 1.1; }
+.card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 1rem; }
