@@ -61,8 +61,8 @@ src/
 
 ## Deploy (GitHub Pages)
 
-Repository: https://github.com/shikhar746/Scrap-3D-Portfolio
-Live site: https://shikhar746.github.io/Scrap-3D-Portfolio/
+Repository: https://github.com/shikhar746/3D-Portfolio
+Live site: https://shikhar746.github.io/3D-Portfolio/
 
 The workflow in `.github/workflows/deploy.yml` builds and publishes the site on every push to `main`,
 and every Monday (to refresh the competitive programming stats).
