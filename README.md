@@ -59,34 +59,22 @@ src/
 - Adding a section: add another `.slot` block. The helix spacing, navigation dots and HUD adjust
   automatically; increase `#scroller` height in `src/styles/base.css` if sections feel rushed.
 
-## Deploy (GitHub Pages, free)
+## Deploy (GitHub Pages)
 
-The workflow in `.github/workflows/deploy.yml` builds and publishes the site on every push to `main`.
+Repository: https://github.com/shikhar746/Scrap-3D-Portfolio
+Live site: https://shikhar746.github.io/Scrap-3D-Portfolio/
 
-```bash
-gh auth login
-```
+The workflow in `.github/workflows/deploy.yml` builds and publishes the site on every push to `main`,
+and every Monday (to refresh the competitive programming stats).
 
-```bash
-gh repo create shikhar746.github.io --public --source . --push
-```
+One-time setup: in the repository, open **Settings → Pages** and set **Source** to **GitHub Actions**.
+Then re-run the latest workflow from the **Actions** tab (or push any commit).
 
-```bash
-gh api -X POST repos/shikhar746/shikhar746.github.io/pages -f build_type=workflow
-```
-
-Then re-run the workflow once (Actions tab, or `gh workflow run deploy.yml`). The site goes live at
-https://shikhar746.github.io.
+The canonical URL, `og:url` and preview-image tags in `index.html` point at the live site. If the site
+moves (custom domain, different repo name), update those four tags and the `url` in the structured data.
 
 Alternatives: import the repo at vercel.com/new or netlify.com (both detect Vite: build command
 `npm run build`, output directory `dist`).
-
-### After deploying
-
-1. In `index.html`, change `og-image.jpg` in the `og:image` and `twitter:image` tags to the full URL,
-   e.g. `https://shikhar746.github.io/og-image.jpg`, and add
-   `<link rel="canonical" href="https://shikhar746.github.io/">`. Link previews need absolute URLs.
-2. Add the site URL to the résumé, GitHub profile and LinkedIn.
 
 ## Notes
 
