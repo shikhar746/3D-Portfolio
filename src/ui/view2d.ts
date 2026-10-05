@@ -71,7 +71,7 @@ export function createView2d(state: AppState, setActive: (key: string | null) =>
     });
 
     // competitive programming
-    const cpSec = section2d('cp', 'cp & dsa');
+    const cpSec = section2d('cp', 'competitive programming');
     add(cpSec, 'p', CP_INTRO, 'd-cp-intro reveal');
     const cpGrid = add(cpSec, 'div', '', 'd-cp');
     fillLeetcode(panel(cpGrid, 'y'));

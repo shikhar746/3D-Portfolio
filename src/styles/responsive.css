@@ -38,7 +38,7 @@
   html.v2d { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
-@media (max-width: 760px) {
+@media (max-width: 1080px) {   /* navbar collapses to the menu button */
   #nav-burger { display: block; }
   .nav-tools { margin-left: auto; }
   .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch;

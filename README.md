@@ -98,8 +98,8 @@ Alternatives: import the repo at vercel.com/new or netlify.com (both detect Vite
 
 ## Features
 
-- CP & DSA section with live-refreshed LeetCode and Codeforces stats
-- Top navbar (about, skills, cp & dsa, projects, contact, résumé) that highlights the current section; collapses to a menu on phones
+- Competitive programming section with live-refreshed LeetCode and Codeforces stats
+- Top navbar (about, skills, competitive programming, projects, contact, résumé) that highlights the current section; collapses to a menu on phones
 - 3D / 2D switch in the navbar. The 2D version remembers each visitor's choice, opens with `?view=2d`,
   and is used automatically when 3D is unavailable or too slow to load
 - Boot sequence, glitch titles and a HUD that decodes the name as you fly
